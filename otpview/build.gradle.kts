@@ -23,6 +23,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -40,15 +45,15 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
 }
 
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            create<MavenPublication>("release") {
-//                from(components["release"])
-//                groupId = "com.github.kshitizsrf"
-//                artifactId = "otpview"
-//                version = "1.0.0"
-//            }
-//        }
-//    }
-//}
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.kshitizsrf"
+                artifactId = "otpview"
+                version = "1.0.0"
+            }
+        }
+    }
+}
